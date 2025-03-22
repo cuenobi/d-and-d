@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  db:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: d-and-d
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  backend:
+    build: ./
+    container_name: backend
+    depends_on:
+      - db
+    environment:
+      RUNNING_IN_DOCKER: "true"
+      DB_HOST: db
+      DB_PORT: "5432"
+      DB_USER: admin
+      DB_PASSWORD: password
+      DB_NAME: d-and-d
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./images:/app/images
+
+volumes:
+  db_data:

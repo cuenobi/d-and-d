@@ -1,0 +1,21 @@
+SERVER:
+  PORT: "8080"
+  ENABLE_STACK_TRACE: true
+  HOST: "http://localhost:"
+  FILEPATH:
+    IMAGE: "/app/images"
+      
+CONNECTION:
+  POSTGRES:
+    HOST: "localhost"
+    PORT: "5432"
+    USERNAME: "admin"
+    PASSWORD: "password"
+    NAME: "d-and-d"
+
+JWT:
+  SECRET_KEY: "zx0VMaxPoPgN0B3tpdKCMHuyr3U3bWqGbZXf83fkjaAE1YgR0Yut9DZXp2bBoEQu4hDF3mF2nNR2zp5H6xv6Tqz3AoXkrxKqwTGg"
+  EXP: 24
+
+LOG:
+  LEVEL: "DEBUG"

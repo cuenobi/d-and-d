@@ -1,0 +1,459 @@
+basePath: /
+definitions:
+  dto.HandlerResponse:
+    properties:
+      data: {}
+      error: {}
+      message:
+        type: string
+      statusCode:
+        type: integer
+    type: object
+  dto.RegisterResponse:
+    properties:
+      message:
+        type: string
+    type: object
+  handler.ErrorResponse:
+    properties:
+      error:
+        type: string
+    type: object
+  handler.LoginBody:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  handler.RegisterBody:
+    properties:
+      name:
+        type: string
+      password:
+        type: string
+      role:
+        type: integer
+      username:
+        type: string
+    required:
+    - name
+    - password
+    - role
+    - username
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: fiber@swagger.io
+    name: API Support
+  description: Character and quest management application using the Go language and
+    any suitable framework
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+  termsOfService: http://swagger.io/terms/
+  title: RESTful API for a Dungeons & Dragons (D&D)
+  version: "1.0"
+paths:
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Authenticate user and return JWT token
+      parameters:
+      - description: User login details
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.LoginBody'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.RegisterResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: User login
+      tags:
+      - User
+  /public/characters:
+    get:
+      consumes:
+      - application/json
+      description: Get public characters
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+      summary: Get public characters
+      tags:
+      - Public
+  /public/images:
+    get:
+      description: Returns an image file from the server
+      parameters:
+      - description: Image filename
+        in: query
+        name: filename
+        required: true
+        type: string
+      produces:
+      - application/octet-stream
+      responses:
+        "200":
+          description: Image file
+          schema:
+            type: file
+        "400":
+          description: File not found
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Get an image file
+      tags:
+      - Public
+  /public/quests:
+    get:
+      consumes:
+      - application/json
+      description: Get public quests
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+      summary: Get public quests
+      tags:
+      - Public
+  /user/character:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Allows a registered user to create a new character with images
+      parameters:
+      - description: Character Name
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: 'Character Description (Max: 5000 digits)'
+        in: formData
+        name: description
+        type: string
+      - description: Race ID
+        in: formData
+        name: race_id
+        required: true
+        type: string
+      - description: Class ID
+        in: formData
+        name: class_id
+        required: true
+        type: string
+      - description: Character Privacy (true = private, false = public)
+        in: formData
+        name: privacy
+        required: true
+        type: boolean
+      - description: 'Character Images (Max: 10 files)'
+        in: formData
+        name: images
+        type: file
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+      security:
+      - BearerAuth: []
+      summary: Create a new character
+      tags:
+      - Character
+  /user/character/{character_id}:
+    delete:
+      description: Deletes a character by its ID
+      parameters:
+      - description: Character ID
+        in: path
+        name: character_id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete a character
+      tags:
+      - Character
+    put:
+      consumes:
+      - multipart/form-data
+      description: Updates a character's details including name, description, difficulty
+        level, privacy, and images
+      parameters:
+      - description: Character ID
+        in: path
+        name: character_id
+        type: string
+      - description: Character Name
+        in: formData
+        name: name
+        type: string
+      - description: Character Description (max 5000 characters)
+        in: formData
+        name: description
+        type: string
+      - description: Race ID
+        in: formData
+        name: race_id
+        type: string
+      - description: Class ID
+        in: formData
+        name: class_id
+        type: string
+      - description: Character Privacy (true = private, false = public)
+        in: formData
+        name: privacy
+        type: boolean
+      - description: 'Character Images (Max: 10 files)'
+        in: formData
+        name: images
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+      security:
+      - BearerAuth: []
+      summary: Update an existing character
+      tags:
+      - Character
+  /user/characters:
+    get:
+      consumes:
+      - application/json
+      description: Get all characters
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+      security:
+      - BearerAuth: []
+      summary: Get all characters
+      tags:
+      - Character
+  /user/quest:
+    post:
+      consumes:
+      - multipart/form-data
+      description: Allows a registered user to create a new quest with images
+      parameters:
+      - description: Quest Name
+        in: formData
+        name: name
+        required: true
+        type: string
+      - description: 'Quest Description (Max: 5000 digits)'
+        in: formData
+        name: description
+        type: string
+      - description: Difficulty Level ID
+        in: formData
+        name: diff_id
+        required: true
+        type: string
+      - description: Quest Privacy (true = private, false = public)
+        in: formData
+        name: privacy
+        required: true
+        type: boolean
+      - description: 'Quest Images (Max: 10 files)'
+        in: formData
+        name: images
+        type: file
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+      security:
+      - BearerAuth: []
+      summary: Create a new quest
+      tags:
+      - Quest
+  /user/quest/{quest_id}:
+    delete:
+      description: Deletes a quest by its ID
+      parameters:
+      - description: Quest ID
+        in: path
+        name: quest_id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete a quest
+      tags:
+      - Quest
+    put:
+      consumes:
+      - multipart/form-data
+      description: Updates a quest's details including name, description, difficulty
+        level, privacy, and images
+      parameters:
+      - description: Quest ID
+        in: path
+        name: quest_id
+        type: string
+      - description: Quest Name
+        in: formData
+        name: name
+        type: string
+      - description: Quest Description (max 5000 characters)
+        in: formData
+        name: description
+        type: string
+      - description: Difficulty Level ID
+        in: formData
+        name: diff_id
+        type: string
+      - description: Quest Privacy (true = private, false = public)
+        in: formData
+        name: privacy
+        type: boolean
+      - description: 'Quest Images (Max: 10 files)'
+        in: formData
+        name: images
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+      security:
+      - BearerAuth: []
+      summary: Update an existing quest
+      tags:
+      - Quest
+  /user/quests:
+    get:
+      consumes:
+      - application/json
+      description: Get all quests
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+      security:
+      - BearerAuth: []
+      summary: Get all quests
+      tags:
+      - Quest
+  /user/register:
+    post:
+      consumes:
+      - application/json
+      description: Create a new user account
+      parameters:
+      - description: User registration details
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.RegisterBody'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.RegisterResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.ErrorResponse'
+      summary: Register a new user
+      tags:
+      - User
+securityDefinitions:
+  BearerAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

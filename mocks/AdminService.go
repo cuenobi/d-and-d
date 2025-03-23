@@ -160,7 +160,7 @@ func (_c *AdminService_CreateRace_Call) RunAndReturn(run func(*model.Race) error
 }
 
 // DeleteClass provides a mock function with given fields: id
-func (_m *AdminService) DeleteClass(id uint) error {
+func (_m *AdminService) DeleteClass(id string) error {
 	ret := _m.Called(id)
 
 	if len(ret) == 0 {
@@ -168,7 +168,7 @@ func (_m *AdminService) DeleteClass(id uint) error {
 	}
 
 	var r0 error
-	if rf, ok := ret.Get(0).(func(uint) error); ok {
+	if rf, ok := ret.Get(0).(func(string) error); ok {
 		r0 = rf(id)
 	} else {
 		r0 = ret.Error(0)
@@ -183,14 +183,14 @@ type AdminService_DeleteClass_Call struct {
 }
 
 // DeleteClass is a helper method to define mock.On call
-//   - id uint
+//   - id string
 func (_e *AdminService_Expecter) DeleteClass(id interface{}) *AdminService_DeleteClass_Call {
 	return &AdminService_DeleteClass_Call{Call: _e.mock.On("DeleteClass", id)}
 }
 
-func (_c *AdminService_DeleteClass_Call) Run(run func(id uint)) *AdminService_DeleteClass_Call {
+func (_c *AdminService_DeleteClass_Call) Run(run func(id string)) *AdminService_DeleteClass_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(uint))
+		run(args[0].(string))
 	})
 	return _c
 }
@@ -200,13 +200,13 @@ func (_c *AdminService_DeleteClass_Call) Return(_a0 error) *AdminService_DeleteC
 	return _c
 }
 
-func (_c *AdminService_DeleteClass_Call) RunAndReturn(run func(uint) error) *AdminService_DeleteClass_Call {
+func (_c *AdminService_DeleteClass_Call) RunAndReturn(run func(string) error) *AdminService_DeleteClass_Call {
 	_c.Call.Return(run)
 	return _c
 }
 
 // DeleteDifficultyLevel provides a mock function with given fields: id
-func (_m *AdminService) DeleteDifficultyLevel(id uint) error {
+func (_m *AdminService) DeleteDifficultyLevel(id string) error {
 	ret := _m.Called(id)
 
 	if len(ret) == 0 {
@@ -214,7 +214,7 @@ func (_m *AdminService) DeleteDifficultyLevel(id uint) error {
 	}
 
 	var r0 error
-	if rf, ok := ret.Get(0).(func(uint) error); ok {
+	if rf, ok := ret.Get(0).(func(string) error); ok {
 		r0 = rf(id)
 	} else {
 		r0 = ret.Error(0)
@@ -229,14 +229,14 @@ type AdminService_DeleteDifficultyLevel_Call struct {
 }
 
 // DeleteDifficultyLevel is a helper method to define mock.On call
-//   - id uint
+//   - id string
 func (_e *AdminService_Expecter) DeleteDifficultyLevel(id interface{}) *AdminService_DeleteDifficultyLevel_Call {
 	return &AdminService_DeleteDifficultyLevel_Call{Call: _e.mock.On("DeleteDifficultyLevel", id)}
 }
 
-func (_c *AdminService_DeleteDifficultyLevel_Call) Run(run func(id uint)) *AdminService_DeleteDifficultyLevel_Call {
+func (_c *AdminService_DeleteDifficultyLevel_Call) Run(run func(id string)) *AdminService_DeleteDifficultyLevel_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(uint))
+		run(args[0].(string))
 	})
 	return _c
 }
@@ -246,13 +246,13 @@ func (_c *AdminService_DeleteDifficultyLevel_Call) Return(_a0 error) *AdminServi
 	return _c
 }
 
-func (_c *AdminService_DeleteDifficultyLevel_Call) RunAndReturn(run func(uint) error) *AdminService_DeleteDifficultyLevel_Call {
+func (_c *AdminService_DeleteDifficultyLevel_Call) RunAndReturn(run func(string) error) *AdminService_DeleteDifficultyLevel_Call {
 	_c.Call.Return(run)
 	return _c
 }
 
 // DeleteRace provides a mock function with given fields: id
-func (_m *AdminService) DeleteRace(id uint) error {
+func (_m *AdminService) DeleteRace(id string) error {
 	ret := _m.Called(id)
 
 	if len(ret) == 0 {
@@ -260,7 +260,7 @@ func (_m *AdminService) DeleteRace(id uint) error {
 	}
 
 	var r0 error
-	if rf, ok := ret.Get(0).(func(uint) error); ok {
+	if rf, ok := ret.Get(0).(func(string) error); ok {
 		r0 = rf(id)
 	} else {
 		r0 = ret.Error(0)
@@ -275,14 +275,14 @@ type AdminService_DeleteRace_Call struct {
 }
 
 // DeleteRace is a helper method to define mock.On call
-//   - id uint
+//   - id string
 func (_e *AdminService_Expecter) DeleteRace(id interface{}) *AdminService_DeleteRace_Call {
 	return &AdminService_DeleteRace_Call{Call: _e.mock.On("DeleteRace", id)}
 }
 
-func (_c *AdminService_DeleteRace_Call) Run(run func(id uint)) *AdminService_DeleteRace_Call {
+func (_c *AdminService_DeleteRace_Call) Run(run func(id string)) *AdminService_DeleteRace_Call {
 	_c.Call.Run(func(args mock.Arguments) {
-		run(args[0].(uint))
+		run(args[0].(string))
 	})
 	return _c
 }
@@ -292,292 +292,7 @@ func (_c *AdminService_DeleteRace_Call) Return(_a0 error) *AdminService_DeleteRa
 	return _c
 }
 
-func (_c *AdminService_DeleteRace_Call) RunAndReturn(run func(uint) error) *AdminService_DeleteRace_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// GetAllCharacter provides a mock function with no fields
-func (_m *AdminService) GetAllCharacter() ([]*model.Character, error) {
-	ret := _m.Called()
-
-	if len(ret) == 0 {
-		panic("no return value specified for GetAllCharacter")
-	}
-
-	var r0 []*model.Character
-	var r1 error
-	if rf, ok := ret.Get(0).(func() ([]*model.Character, error)); ok {
-		return rf()
-	}
-	if rf, ok := ret.Get(0).(func() []*model.Character); ok {
-		r0 = rf()
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).([]*model.Character)
-		}
-	}
-
-	if rf, ok := ret.Get(1).(func() error); ok {
-		r1 = rf()
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
-}
-
-// AdminService_GetAllCharacter_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetAllCharacter'
-type AdminService_GetAllCharacter_Call struct {
-	*mock.Call
-}
-
-// GetAllCharacter is a helper method to define mock.On call
-func (_e *AdminService_Expecter) GetAllCharacter() *AdminService_GetAllCharacter_Call {
-	return &AdminService_GetAllCharacter_Call{Call: _e.mock.On("GetAllCharacter")}
-}
-
-func (_c *AdminService_GetAllCharacter_Call) Run(run func()) *AdminService_GetAllCharacter_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run()
-	})
-	return _c
-}
-
-func (_c *AdminService_GetAllCharacter_Call) Return(_a0 []*model.Character, _a1 error) *AdminService_GetAllCharacter_Call {
-	_c.Call.Return(_a0, _a1)
-	return _c
-}
-
-func (_c *AdminService_GetAllCharacter_Call) RunAndReturn(run func() ([]*model.Character, error)) *AdminService_GetAllCharacter_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// GetAllClass provides a mock function with no fields
-func (_m *AdminService) GetAllClass() ([]*model.Class, error) {
-	ret := _m.Called()
-
-	if len(ret) == 0 {
-		panic("no return value specified for GetAllClass")
-	}
-
-	var r0 []*model.Class
-	var r1 error
-	if rf, ok := ret.Get(0).(func() ([]*model.Class, error)); ok {
-		return rf()
-	}
-	if rf, ok := ret.Get(0).(func() []*model.Class); ok {
-		r0 = rf()
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).([]*model.Class)
-		}
-	}
-
-	if rf, ok := ret.Get(1).(func() error); ok {
-		r1 = rf()
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
-}
-
-// AdminService_GetAllClass_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetAllClass'
-type AdminService_GetAllClass_Call struct {
-	*mock.Call
-}
-
-// GetAllClass is a helper method to define mock.On call
-func (_e *AdminService_Expecter) GetAllClass() *AdminService_GetAllClass_Call {
-	return &AdminService_GetAllClass_Call{Call: _e.mock.On("GetAllClass")}
-}
-
-func (_c *AdminService_GetAllClass_Call) Run(run func()) *AdminService_GetAllClass_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run()
-	})
-	return _c
-}
-
-func (_c *AdminService_GetAllClass_Call) Return(_a0 []*model.Class, _a1 error) *AdminService_GetAllClass_Call {
-	_c.Call.Return(_a0, _a1)
-	return _c
-}
-
-func (_c *AdminService_GetAllClass_Call) RunAndReturn(run func() ([]*model.Class, error)) *AdminService_GetAllClass_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// GetAllDifficultyLevel provides a mock function with no fields
-func (_m *AdminService) GetAllDifficultyLevel() ([]*model.DifficultyLevels, error) {
-	ret := _m.Called()
-
-	if len(ret) == 0 {
-		panic("no return value specified for GetAllDifficultyLevel")
-	}
-
-	var r0 []*model.DifficultyLevels
-	var r1 error
-	if rf, ok := ret.Get(0).(func() ([]*model.DifficultyLevels, error)); ok {
-		return rf()
-	}
-	if rf, ok := ret.Get(0).(func() []*model.DifficultyLevels); ok {
-		r0 = rf()
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).([]*model.DifficultyLevels)
-		}
-	}
-
-	if rf, ok := ret.Get(1).(func() error); ok {
-		r1 = rf()
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
-}
-
-// AdminService_GetAllDifficultyLevel_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetAllDifficultyLevel'
-type AdminService_GetAllDifficultyLevel_Call struct {
-	*mock.Call
-}
-
-// GetAllDifficultyLevel is a helper method to define mock.On call
-func (_e *AdminService_Expecter) GetAllDifficultyLevel() *AdminService_GetAllDifficultyLevel_Call {
-	return &AdminService_GetAllDifficultyLevel_Call{Call: _e.mock.On("GetAllDifficultyLevel")}
-}
-
-func (_c *AdminService_GetAllDifficultyLevel_Call) Run(run func()) *AdminService_GetAllDifficultyLevel_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run()
-	})
-	return _c
-}
-
-func (_c *AdminService_GetAllDifficultyLevel_Call) Return(_a0 []*model.DifficultyLevels, _a1 error) *AdminService_GetAllDifficultyLevel_Call {
-	_c.Call.Return(_a0, _a1)
-	return _c
-}
-
-func (_c *AdminService_GetAllDifficultyLevel_Call) RunAndReturn(run func() ([]*model.DifficultyLevels, error)) *AdminService_GetAllDifficultyLevel_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// GetAllQuest provides a mock function with no fields
-func (_m *AdminService) GetAllQuest() ([]*model.Quest, error) {
-	ret := _m.Called()
-
-	if len(ret) == 0 {
-		panic("no return value specified for GetAllQuest")
-	}
-
-	var r0 []*model.Quest
-	var r1 error
-	if rf, ok := ret.Get(0).(func() ([]*model.Quest, error)); ok {
-		return rf()
-	}
-	if rf, ok := ret.Get(0).(func() []*model.Quest); ok {
-		r0 = rf()
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).([]*model.Quest)
-		}
-	}
-
-	if rf, ok := ret.Get(1).(func() error); ok {
-		r1 = rf()
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
-}
-
-// AdminService_GetAllQuest_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetAllQuest'
-type AdminService_GetAllQuest_Call struct {
-	*mock.Call
-}
-
-// GetAllQuest is a helper method to define mock.On call
-func (_e *AdminService_Expecter) GetAllQuest() *AdminService_GetAllQuest_Call {
-	return &AdminService_GetAllQuest_Call{Call: _e.mock.On("GetAllQuest")}
-}
-
-func (_c *AdminService_GetAllQuest_Call) Run(run func()) *AdminService_GetAllQuest_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run()
-	})
-	return _c
-}
-
-func (_c *AdminService_GetAllQuest_Call) Return(_a0 []*model.Quest, _a1 error) *AdminService_GetAllQuest_Call {
-	_c.Call.Return(_a0, _a1)
-	return _c
-}
-
-func (_c *AdminService_GetAllQuest_Call) RunAndReturn(run func() ([]*model.Quest, error)) *AdminService_GetAllQuest_Call {
-	_c.Call.Return(run)
-	return _c
-}
-
-// GetAllRace provides a mock function with no fields
-func (_m *AdminService) GetAllRace() ([]*model.Race, error) {
-	ret := _m.Called()
-
-	if len(ret) == 0 {
-		panic("no return value specified for GetAllRace")
-	}
-
-	var r0 []*model.Race
-	var r1 error
-	if rf, ok := ret.Get(0).(func() ([]*model.Race, error)); ok {
-		return rf()
-	}
-	if rf, ok := ret.Get(0).(func() []*model.Race); ok {
-		r0 = rf()
-	} else {
-		if ret.Get(0) != nil {
-			r0 = ret.Get(0).([]*model.Race)
-		}
-	}
-
-	if rf, ok := ret.Get(1).(func() error); ok {
-		r1 = rf()
-	} else {
-		r1 = ret.Error(1)
-	}
-
-	return r0, r1
-}
-
-// AdminService_GetAllRace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'GetAllRace'
-type AdminService_GetAllRace_Call struct {
-	*mock.Call
-}
-
-// GetAllRace is a helper method to define mock.On call
-func (_e *AdminService_Expecter) GetAllRace() *AdminService_GetAllRace_Call {
-	return &AdminService_GetAllRace_Call{Call: _e.mock.On("GetAllRace")}
-}
-
-func (_c *AdminService_GetAllRace_Call) Run(run func()) *AdminService_GetAllRace_Call {
-	_c.Call.Run(func(args mock.Arguments) {
-		run()
-	})
-	return _c
-}
-
-func (_c *AdminService_GetAllRace_Call) Return(_a0 []*model.Race, _a1 error) *AdminService_GetAllRace_Call {
-	_c.Call.Return(_a0, _a1)
-	return _c
-}
-
-func (_c *AdminService_GetAllRace_Call) RunAndReturn(run func() ([]*model.Race, error)) *AdminService_GetAllRace_Call {
+func (_c *AdminService_DeleteRace_Call) RunAndReturn(run func(string) error) *AdminService_DeleteRace_Call {
 	_c.Call.Return(run)
 	return _c
 }

@@ -1,5 +1,27 @@
 basePath: /
 definitions:
+  dto.ClassBody:
+    properties:
+      description:
+        maxLength: 5000
+        type: string
+      name:
+        type: string
+    required:
+    - description
+    - name
+    type: object
+  dto.DifficultyLevel:
+    properties:
+      description:
+        maxLength: 5000
+        type: string
+      name:
+        type: string
+    required:
+    - description
+    - name
+    type: object
   dto.HandlerResponse:
     properties:
       data: {}
@@ -9,10 +31,57 @@ definitions:
       statusCode:
         type: integer
     type: object
+  dto.RaceBody:
+    properties:
+      description:
+        maxLength: 5000
+        type: string
+      name:
+        type: string
+    required:
+    - description
+    - name
+    type: object
   dto.RegisterResponse:
     properties:
       message:
         type: string
+    type: object
+  dto.UpdateClassBody:
+    properties:
+      description:
+        maxLength: 5000
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+    required:
+    - id
+    type: object
+  dto.UpdateDifficultyLevel:
+    properties:
+      description:
+        maxLength: 5000
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+    required:
+    - id
+    type: object
+  dto.UpdateRaceBody:
+    properties:
+      description:
+        maxLength: 5000
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+    required:
+    - id
     type: object
   handler.ErrorResponse:
     properties:
@@ -59,6 +128,241 @@ info:
   title: RESTful API for a Dungeons & Dragons (D&D)
   version: "1.0"
 paths:
+  /admin/class:
+    post:
+      consumes:
+      - application/json
+      description: Create a new Class
+      parameters:
+      - description: Create class details
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ClassBody'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+      security:
+      - BearerAuth: []
+      summary: Create a new Class
+      tags:
+      - Admin
+    put:
+      consumes:
+      - application/json
+      description: Update a new Class
+      parameters:
+      - description: Update class details. If a field does not need to be updated,
+          just insert an empty string, You can get your class_id from get class api
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/dto.UpdateClassBody'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+      security:
+      - BearerAuth: []
+      summary: Update a new Class
+      tags:
+      - Admin
+  /admin/class/{class_id}:
+    delete:
+      description: Deletes a class by its ID
+      parameters:
+      - description: class ID
+        in: path
+        name: class_id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete a class
+      tags:
+      - Admin
+  /admin/diff-lv:
+    post:
+      consumes:
+      - application/json
+      description: Create a new Difficulty Level
+      parameters:
+      - description: Create difficultyLevel details
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.DifficultyLevel'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+      security:
+      - BearerAuth: []
+      summary: Create a new Difficulty Level
+      tags:
+      - Admin
+    put:
+      consumes:
+      - application/json
+      description: Update a new Difficulty Level
+      parameters:
+      - description: Update Difficulty Levels. If a field does not need to be updated,
+          just insert an empty string, You can get your difficulty_level_id from get
+          difficulty_level api
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/dto.UpdateDifficultyLevel'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+      security:
+      - BearerAuth: []
+      summary: Update a new Difficulty Level
+      tags:
+      - Admin
+  /admin/diff-lv/{difficulty_level_id}:
+    delete:
+      description: Deletes a difficulty level by its ID
+      parameters:
+      - description: difficulty level ID
+        in: path
+        name: difficulty_level_id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete a difficulty level
+      tags:
+      - Admin
+  /admin/race:
+    post:
+      consumes:
+      - application/json
+      description: Create a new Race
+      parameters:
+      - description: Create race details
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.RaceBody'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+      security:
+      - BearerAuth: []
+      summary: Create a new Race
+      tags:
+      - Admin
+    put:
+      consumes:
+      - application/json
+      description: Update a new Race
+      parameters:
+      - description: Update race details. If a field does not need to be updated,
+          just insert an empty string, You can get your race_id from get race api
+        in: body
+        name: request
+        schema:
+          $ref: '#/definitions/dto.UpdateRaceBody'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+      security:
+      - BearerAuth: []
+      summary: Update a new Race
+      tags:
+      - Admin
+  /admin/race/{race_id}:
+    delete:
+      description: Deletes a race by its ID
+      parameters:
+      - description: race ID
+        in: path
+        name: race_id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete a race
+      tags:
+      - Admin
   /login:
     post:
       consumes:
@@ -273,12 +577,13 @@ paths:
     get:
       consumes:
       - application/json
-      description: Get all characters
+      description: Get all characters, You can retrieve the ID for updating or deleting
+        a character if needed.
       produces:
       - application/json
       responses:
-        "201":
-          description: Created
+        "200":
+          description: OK
           schema:
             $ref: '#/definitions/dto.HandlerResponse'
         "400":
@@ -290,6 +595,50 @@ paths:
       summary: Get all characters
       tags:
       - Character
+  /user/classes:
+    get:
+      consumes:
+      - application/json
+      description: Get all classes, You can retrieve the ID for create character updating
+        or deleting a class if needed.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+      security:
+      - BearerAuth: []
+      summary: Get all classes
+      tags:
+      - User
+  /user/diff-lv:
+    get:
+      consumes:
+      - application/json
+      description: Get difficulty level, You can retrieve the ID for create quest
+        updating or deleting a difficulty level if needed.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+      security:
+      - BearerAuth: []
+      summary: Get all difficulty level
+      tags:
+      - User
   /user/quest:
     post:
       consumes:
@@ -408,12 +757,13 @@ paths:
     get:
       consumes:
       - application/json
-      description: Get all quests
+      description: Get all quests, You can retrieve the ID for updating or deleting
+        a quest if needed.
       produces:
       - application/json
       responses:
-        "201":
-          description: Created
+        "200":
+          description: OK
           schema:
             $ref: '#/definitions/dto.HandlerResponse'
         "400":
@@ -425,11 +775,33 @@ paths:
       summary: Get all quests
       tags:
       - Quest
+  /user/races:
+    get:
+      consumes:
+      - application/json
+      description: Get all races, You can retrieve the ID for create character updating
+        or deleting a race if needed.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/dto.HandlerResponse'
+      security:
+      - BearerAuth: []
+      summary: Get all races
+      tags:
+      - User
   /user/register:
     post:
       consumes:
       - application/json
-      description: Create a new user account
+      description: 'Create a new user account role (1: User, 2: Admin)'
       parameters:
       - description: User registration details
         in: body

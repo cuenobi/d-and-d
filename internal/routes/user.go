@@ -30,6 +30,18 @@ func NewRouteUserHandler(f *fiber.App, userService port.UserService, jwt port.JW
 		response := handler.GetAllCharacter(ctx)
 		return ctx.Status(response.StatusCode).JSON(response)
 	})
+	user.Get("/races", jwt.Validate, func(ctx *fiber.Ctx) error {
+		response := handler.GetAllRace(ctx)
+		return ctx.Status(response.StatusCode).JSON(response)
+	})
+	user.Get("/classes", jwt.Validate, func(ctx *fiber.Ctx) error {
+		response := handler.GetAllClass(ctx)
+		return ctx.Status(response.StatusCode).JSON(response)
+	})
+	user.Get("/diff-lv", jwt.Validate, func(ctx *fiber.Ctx) error {
+		response := handler.GetAllDifficultyLevel(ctx)
+		return ctx.Status(response.StatusCode).JSON(response)
+	})
 	user.Post("/quest", jwt.Validate, func(ctx *fiber.Ctx) error {
 		response := handler.CreateQuest(ctx)
 		return ctx.Status(response.StatusCode).JSON(response)
@@ -54,9 +66,6 @@ func NewRouteUserHandler(f *fiber.App, userService port.UserService, jwt port.JW
 		response := handler.DeleteCharacter(ctx)
 		return ctx.Status(response.StatusCode).JSON(response)
 	})
-
-	admin := f.Group("/admin")
-	admin.Post("/register", handler.JWT.Validate)
 
 	return handler
 }

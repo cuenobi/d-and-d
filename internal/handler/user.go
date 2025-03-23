@@ -37,7 +37,7 @@ type RegisterBody struct {
 
 // RegisterHandler godoc
 // @Summary Register a new user
-// @Description Create a new user account
+// @Description Create a new user account role (1: User, 2: Admin)
 // @Tags User
 // @Accept  json
 // @Produce  json
@@ -123,14 +123,14 @@ func (u *UserHandler) Login(ctx *fiber.Ctx) error {
 	})
 }
 
-// RegisterHandler godoc
+// GetAllQuests godoc
 // @Security BearerAuth
 // @Summary Get all quests
-// @Description Get all quests
+// @Description Get all quests, You can retrieve the ID for updating or deleting a quest if needed.
 // @Tags Quest
 // @Accept json
 // @Produce json
-// @Success 201 {object} dto.HandlerResponse
+// @Success 200 {object} dto.HandlerResponse
 // @Failure 400 {object} dto.HandlerResponse
 // @Router /user/quests [get]
 func (u *UserHandler) GetAllQuest(ctx *fiber.Ctx) dto.HandlerResponse {
@@ -149,14 +149,14 @@ func (u *UserHandler) GetAllQuest(ctx *fiber.Ctx) dto.HandlerResponse {
 	}
 }
 
-// RegisterHandler godoc
+// GetAllCharacters godoc
 // @Security BearerAuth
 // @Summary Get all characters
-// @Description Get all characters
+// @Description Get all characters, You can retrieve the ID for updating or deleting a character if needed.
 // @Tags Character
 // @Accept json
 // @Produce json
-// @Success 201 {object} dto.HandlerResponse
+// @Success 200 {object} dto.HandlerResponse
 // @Failure 400 {object} dto.HandlerResponse
 // @Router /user/characters [get]
 func (u *UserHandler) GetAllCharacter(ctx *fiber.Ctx) dto.HandlerResponse {
@@ -172,6 +172,84 @@ func (u *UserHandler) GetAllCharacter(ctx *fiber.Ctx) dto.HandlerResponse {
 		StatusCode: fiber.StatusOK,
 		Message:    "Success",
 		Data:       characters,
+	}
+}
+
+// GetAllRaces godoc
+// @Security BearerAuth
+// @Summary Get all races
+// @Description Get all races, You can retrieve the ID for create character updating or deleting a race if needed.
+// @Tags User
+// @Accept json
+// @Produce json
+// @Success 200 {object} dto.HandlerResponse
+// @Failure 400 {object} dto.HandlerResponse
+// @Router /user/races [get]
+func (u *UserHandler) GetAllRace(ctx *fiber.Ctx) dto.HandlerResponse {
+	races, err := u.UserService.GetRace(ctx)
+	if err != nil {
+		return dto.HandlerResponse{
+			StatusCode: fiber.StatusBadRequest,
+			Error:      err,
+		}
+	}
+
+	return dto.HandlerResponse{
+		StatusCode: fiber.StatusOK,
+		Message:    "Success",
+		Data:       races,
+	}
+}
+
+// GetAllClasses godoc
+// @Security BearerAuth
+// @Summary Get all classes
+// @Description Get all classes, You can retrieve the ID for create character updating or deleting a class if needed.
+// @Tags User
+// @Accept json
+// @Produce json
+// @Success 200 {object} dto.HandlerResponse
+// @Failure 400 {object} dto.HandlerResponse
+// @Router /user/classes [get]
+func (u *UserHandler) GetAllClass(ctx *fiber.Ctx) dto.HandlerResponse {
+	classes, err := u.UserService.GetClass(ctx)
+	if err != nil {
+		return dto.HandlerResponse{
+			StatusCode: fiber.StatusBadRequest,
+			Error:      err,
+		}
+	}
+
+	return dto.HandlerResponse{
+		StatusCode: fiber.StatusOK,
+		Message:    "Success",
+		Data:       classes,
+	}
+}
+
+// GetAllDifficultyLevel godoc
+// @Security BearerAuth
+// @Summary Get all difficulty level
+// @Description Get difficulty level, You can retrieve the ID for create quest updating or deleting a difficulty level if needed.
+// @Tags User
+// @Accept json
+// @Produce json
+// @Success 200 {object} dto.HandlerResponse
+// @Failure 400 {object} dto.HandlerResponse
+// @Router /user/diff-lv [get]
+func (u *UserHandler) GetAllDifficultyLevel(ctx *fiber.Ctx) dto.HandlerResponse {
+	diffs, err := u.UserService.GetDifficultyLevel(ctx)
+	if err != nil {
+		return dto.HandlerResponse{
+			StatusCode: fiber.StatusBadRequest,
+			Error:      err,
+		}
+	}
+
+	return dto.HandlerResponse{
+		StatusCode: fiber.StatusOK,
+		Message:    "Success",
+		Data:       diffs,
 	}
 }
 

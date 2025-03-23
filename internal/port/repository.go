@@ -22,10 +22,23 @@ type UserRepository interface {
 }
 
 type OptionsRepository interface {
-	GetAllRace() ([]*model.Race, error)
 	GetRaceByID(id string) (*model.Race, error)
-	GetAllClass() ([]*model.Class, error)
 	GetClassByID(id string) (*model.Class, error)
-	GetAllDifficultyLevel() ([]*model.DifficultyLevels, error)
 	GetDifficultyLevelById(id string) (*model.DifficultyLevels, error)
+
+	GetAllRace() ([]*model.Race, error)
+	GetAllClass() ([]*model.Class, error)
+	GetAllDifficultyLevel() ([]*model.DifficultyLevels, error)
+
+	CreateRace(race *model.Race) error
+	CreateClass(class *model.Class) error
+	CreateDifficultyLevel(diffLevel *model.DifficultyLevels) error
+
+	UpdateRace(race *model.Race) error
+	UpdateClass(class *model.Class) error
+	UpdateDifficultyLevel(diffLevel *model.DifficultyLevels) error
+
+	DeleteRace(raceID string) error
+	DeleteClass(classID string) error
+	DeleteDifficultyLevel(diffLvID string) error
 }

@@ -125,16 +125,52 @@ func (u *UserService) Authentication(ctx *fiber.Ctx, username, password string) 
 	return token, user.Role, nil
 }
 
-func (u *UserService) GetRace(ctx *fiber.Ctx) ([]*model.Race, error) {
-	return u.optionsRepo.GetAllRace()
+func (u *UserService) GetRace(ctx *fiber.Ctx) ([]dto.RaceResponse, error) {
+	resp := make([]dto.RaceResponse, 0)
+	data, err := u.optionsRepo.GetAllRace()
+	if err != nil {
+		return nil, err
+	}
+	for _, d := range data {
+		resp = append(resp, dto.RaceResponse{
+			ID:          d.ID,
+			Name:        d.Name,
+			Description: d.Description,
+		})
+	}
+	return resp, nil
 }
 
-func (u *UserService) GetClass(ctx *fiber.Ctx) ([]*model.Class, error) {
-	return u.optionsRepo.GetAllClass()
+func (u *UserService) GetClass(ctx *fiber.Ctx) ([]dto.ClassResponse, error) {
+	resp := make([]dto.ClassResponse, 0)
+	data, err := u.optionsRepo.GetAllClass()
+	if err != nil {
+		return nil, err
+	}
+	for _, d := range data {
+		resp = append(resp, dto.ClassResponse{
+			ID:          d.ID,
+			Name:        d.Name,
+			Description: d.Description,
+		})
+	}
+	return resp, nil
 }
 
-func (u *UserService) GetDifficultyLevel(ctx *fiber.Ctx) ([]*model.DifficultyLevels, error) {
-	return u.optionsRepo.GetAllDifficultyLevel()
+func (u *UserService) GetDifficultyLevel(ctx *fiber.Ctx) ([]dto.DifficultyLevelResponse, error) {
+	resp := make([]dto.DifficultyLevelResponse, 0)
+	data, err := u.optionsRepo.GetAllDifficultyLevel()
+	if err != nil {
+		return nil, err
+	}
+	for _, d := range data {
+		resp = append(resp, dto.DifficultyLevelResponse{
+			ID:          d.ID,
+			Name:        d.Name,
+			Description: d.Description,
+		})
+	}
+	return resp, nil
 }
 
 func (u *UserService) GetAllCharacter(ctx *fiber.Ctx) ([]dto.CharacterResponse, error) {
@@ -196,10 +232,13 @@ func (u *UserService) CreateCharacter(ctx *fiber.Ctx, character *model.Character
 		return err
 	}
 
-	imagePaths, err := u.SaveImage(ctx, files, user.ID, constant.CharacterPath)
-	if err != nil {
-		u.logger.Error(err.Error())
-		return err
+	var imagePaths []string
+	if len(files) > 0 {
+		imagePaths, err = u.SaveImage(ctx, files, user.ID, constant.CharacterPath)
+		if err != nil {
+			u.logger.Error(err.Error())
+			return err
+		}
 	}
 
 	character = &model.Character{
@@ -238,10 +277,13 @@ func (u *UserService) CreateQuest(ctx *fiber.Ctx, quest *model.Quest, files []*m
 		return err
 	}
 
-	imagePaths, err := u.SaveImage(ctx, files, user.ID, constant.QuestPath)
-	if err != nil {
-		u.logger.Error(err.Error())
-		return err
+	var imagePaths []string
+	if len(files) > 0 {
+		imagePaths, err = u.SaveImage(ctx, files, user.ID, constant.QuestPath)
+		if err != nil {
+			u.logger.Error(err.Error())
+			return err
+		}
 	}
 
 	quest = &model.Quest{
@@ -294,10 +336,13 @@ func (u *UserService) UpdateCharacter(ctx *fiber.Ctx, character *model.Character
 		raceID = race.ID
 	}
 
-	imagePaths, err := u.SaveImage(ctx, files, user.ID, constant.QuestPath)
-	if err != nil {
-		u.logger.Error(err.Error())
-		return err
+	var imagePaths []string
+	if len(files) > 0 {
+		imagePaths, err = u.SaveImage(ctx, files, user.ID, constant.QuestPath)
+		if err != nil {
+			u.logger.Error(err.Error())
+			return err
+		}
 	}
 
 	character = &model.Character{
@@ -341,10 +386,13 @@ func (u *UserService) UpdateQuest(ctx *fiber.Ctx, quest *model.Quest, files []*m
 		diffLevelID = diffLevel.ID
 	}
 
-	imagePaths, err := u.SaveImage(ctx, files, user.ID, constant.QuestPath)
-	if err != nil {
-		u.logger.Error(err.Error())
-		return err
+	var imagePaths []string
+	if len(files) > 0 {
+		imagePaths, err = u.SaveImage(ctx, files, user.ID, constant.QuestPath)
+		if err != nil {
+			u.logger.Error(err.Error())
+			return err
+		}
 	}
 
 	quest = &model.Quest{

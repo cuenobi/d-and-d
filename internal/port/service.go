@@ -29,23 +29,21 @@ type UserService interface {
 	UpdateQuest(ctx *fiber.Ctx, quest *model.Quest, images []*multipart.FileHeader, privacyUpdate bool) error
 	DeleteCharacter(ctx *fiber.Ctx, characterID string) error
 	DeleteQuest(ctx *fiber.Ctx, questID string) error
-
-	// TODO
-	GetRace(ctx *fiber.Ctx) ([]*model.Race, error)
-	GetClass(ctx *fiber.Ctx) ([]*model.Class, error)
-	GetDifficultyLevel(ctx *fiber.Ctx) ([]*model.DifficultyLevels, error)
+	GetRace(ctx *fiber.Ctx) ([]dto.RaceResponse, error)
+	GetClass(ctx *fiber.Ctx) ([]dto.ClassResponse, error)
+	GetDifficultyLevel(ctx *fiber.Ctx) ([]dto.DifficultyLevelResponse, error)
 }
 
 type AdminService interface {
-	CreateClass(class *model.Class) error                     // TODO: Implement this
-	CreateRace(race *model.Race) error                        // TODO: Implement this
-	CreateDifficultyLevel(diff *model.DifficultyLevels) error // TODO: Implement this
+	CreateClass(class *model.Class) error
+	CreateRace(race *model.Race) error
+	CreateDifficultyLevel(diff *model.DifficultyLevels) error
 
-	UpdateClass(class *model.Class) error                     // TODO: Implement this
-	UpdateRace(race *model.Race) error                        // TODO: Implement this
-	UpdateDifficultyLevel(diff *model.DifficultyLevels) error // TODO: Implement this
+	UpdateClass(class *model.Class) error
+	UpdateRace(race *model.Race) error
+	UpdateDifficultyLevel(diff *model.DifficultyLevels) error
 
-	DeleteClass(id uint) error           // TODO: Implement this
-	DeleteRace(id uint) error            // TODO: Implement this
-	DeleteDifficultyLevel(id uint) error // TODO: Implement this
+	DeleteClass(id string) error
+	DeleteRace(id string) error
+	DeleteDifficultyLevel(id string) error
 }

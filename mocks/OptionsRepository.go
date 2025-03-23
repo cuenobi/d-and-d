@@ -21,6 +21,282 @@ func (_m *OptionsRepository) EXPECT() *OptionsRepository_Expecter {
 	return &OptionsRepository_Expecter{mock: &_m.Mock}
 }
 
+// CreateClass provides a mock function with given fields: class
+func (_m *OptionsRepository) CreateClass(class *model.Class) error {
+	ret := _m.Called(class)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateClass")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(*model.Class) error); ok {
+		r0 = rf(class)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// OptionsRepository_CreateClass_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'CreateClass'
+type OptionsRepository_CreateClass_Call struct {
+	*mock.Call
+}
+
+// CreateClass is a helper method to define mock.On call
+//   - class *model.Class
+func (_e *OptionsRepository_Expecter) CreateClass(class interface{}) *OptionsRepository_CreateClass_Call {
+	return &OptionsRepository_CreateClass_Call{Call: _e.mock.On("CreateClass", class)}
+}
+
+func (_c *OptionsRepository_CreateClass_Call) Run(run func(class *model.Class)) *OptionsRepository_CreateClass_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(*model.Class))
+	})
+	return _c
+}
+
+func (_c *OptionsRepository_CreateClass_Call) Return(_a0 error) *OptionsRepository_CreateClass_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *OptionsRepository_CreateClass_Call) RunAndReturn(run func(*model.Class) error) *OptionsRepository_CreateClass_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// CreateDifficultyLevel provides a mock function with given fields: diffLevel
+func (_m *OptionsRepository) CreateDifficultyLevel(diffLevel *model.DifficultyLevels) error {
+	ret := _m.Called(diffLevel)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateDifficultyLevel")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(*model.DifficultyLevels) error); ok {
+		r0 = rf(diffLevel)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// OptionsRepository_CreateDifficultyLevel_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'CreateDifficultyLevel'
+type OptionsRepository_CreateDifficultyLevel_Call struct {
+	*mock.Call
+}
+
+// CreateDifficultyLevel is a helper method to define mock.On call
+//   - diffLevel *model.DifficultyLevels
+func (_e *OptionsRepository_Expecter) CreateDifficultyLevel(diffLevel interface{}) *OptionsRepository_CreateDifficultyLevel_Call {
+	return &OptionsRepository_CreateDifficultyLevel_Call{Call: _e.mock.On("CreateDifficultyLevel", diffLevel)}
+}
+
+func (_c *OptionsRepository_CreateDifficultyLevel_Call) Run(run func(diffLevel *model.DifficultyLevels)) *OptionsRepository_CreateDifficultyLevel_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(*model.DifficultyLevels))
+	})
+	return _c
+}
+
+func (_c *OptionsRepository_CreateDifficultyLevel_Call) Return(_a0 error) *OptionsRepository_CreateDifficultyLevel_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *OptionsRepository_CreateDifficultyLevel_Call) RunAndReturn(run func(*model.DifficultyLevels) error) *OptionsRepository_CreateDifficultyLevel_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// CreateRace provides a mock function with given fields: race
+func (_m *OptionsRepository) CreateRace(race *model.Race) error {
+	ret := _m.Called(race)
+
+	if len(ret) == 0 {
+		panic("no return value specified for CreateRace")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(*model.Race) error); ok {
+		r0 = rf(race)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// OptionsRepository_CreateRace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'CreateRace'
+type OptionsRepository_CreateRace_Call struct {
+	*mock.Call
+}
+
+// CreateRace is a helper method to define mock.On call
+//   - race *model.Race
+func (_e *OptionsRepository_Expecter) CreateRace(race interface{}) *OptionsRepository_CreateRace_Call {
+	return &OptionsRepository_CreateRace_Call{Call: _e.mock.On("CreateRace", race)}
+}
+
+func (_c *OptionsRepository_CreateRace_Call) Run(run func(race *model.Race)) *OptionsRepository_CreateRace_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(*model.Race))
+	})
+	return _c
+}
+
+func (_c *OptionsRepository_CreateRace_Call) Return(_a0 error) *OptionsRepository_CreateRace_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *OptionsRepository_CreateRace_Call) RunAndReturn(run func(*model.Race) error) *OptionsRepository_CreateRace_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// DeleteClass provides a mock function with given fields: classID
+func (_m *OptionsRepository) DeleteClass(classID string) error {
+	ret := _m.Called(classID)
+
+	if len(ret) == 0 {
+		panic("no return value specified for DeleteClass")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(string) error); ok {
+		r0 = rf(classID)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// OptionsRepository_DeleteClass_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'DeleteClass'
+type OptionsRepository_DeleteClass_Call struct {
+	*mock.Call
+}
+
+// DeleteClass is a helper method to define mock.On call
+//   - classID string
+func (_e *OptionsRepository_Expecter) DeleteClass(classID interface{}) *OptionsRepository_DeleteClass_Call {
+	return &OptionsRepository_DeleteClass_Call{Call: _e.mock.On("DeleteClass", classID)}
+}
+
+func (_c *OptionsRepository_DeleteClass_Call) Run(run func(classID string)) *OptionsRepository_DeleteClass_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(string))
+	})
+	return _c
+}
+
+func (_c *OptionsRepository_DeleteClass_Call) Return(_a0 error) *OptionsRepository_DeleteClass_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *OptionsRepository_DeleteClass_Call) RunAndReturn(run func(string) error) *OptionsRepository_DeleteClass_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// DeleteDifficultyLevel provides a mock function with given fields: diffLvID
+func (_m *OptionsRepository) DeleteDifficultyLevel(diffLvID string) error {
+	ret := _m.Called(diffLvID)
+
+	if len(ret) == 0 {
+		panic("no return value specified for DeleteDifficultyLevel")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(string) error); ok {
+		r0 = rf(diffLvID)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// OptionsRepository_DeleteDifficultyLevel_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'DeleteDifficultyLevel'
+type OptionsRepository_DeleteDifficultyLevel_Call struct {
+	*mock.Call
+}
+
+// DeleteDifficultyLevel is a helper method to define mock.On call
+//   - diffLvID string
+func (_e *OptionsRepository_Expecter) DeleteDifficultyLevel(diffLvID interface{}) *OptionsRepository_DeleteDifficultyLevel_Call {
+	return &OptionsRepository_DeleteDifficultyLevel_Call{Call: _e.mock.On("DeleteDifficultyLevel", diffLvID)}
+}
+
+func (_c *OptionsRepository_DeleteDifficultyLevel_Call) Run(run func(diffLvID string)) *OptionsRepository_DeleteDifficultyLevel_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(string))
+	})
+	return _c
+}
+
+func (_c *OptionsRepository_DeleteDifficultyLevel_Call) Return(_a0 error) *OptionsRepository_DeleteDifficultyLevel_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *OptionsRepository_DeleteDifficultyLevel_Call) RunAndReturn(run func(string) error) *OptionsRepository_DeleteDifficultyLevel_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// DeleteRace provides a mock function with given fields: raceID
+func (_m *OptionsRepository) DeleteRace(raceID string) error {
+	ret := _m.Called(raceID)
+
+	if len(ret) == 0 {
+		panic("no return value specified for DeleteRace")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(string) error); ok {
+		r0 = rf(raceID)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// OptionsRepository_DeleteRace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'DeleteRace'
+type OptionsRepository_DeleteRace_Call struct {
+	*mock.Call
+}
+
+// DeleteRace is a helper method to define mock.On call
+//   - raceID string
+func (_e *OptionsRepository_Expecter) DeleteRace(raceID interface{}) *OptionsRepository_DeleteRace_Call {
+	return &OptionsRepository_DeleteRace_Call{Call: _e.mock.On("DeleteRace", raceID)}
+}
+
+func (_c *OptionsRepository_DeleteRace_Call) Run(run func(raceID string)) *OptionsRepository_DeleteRace_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(string))
+	})
+	return _c
+}
+
+func (_c *OptionsRepository_DeleteRace_Call) Return(_a0 error) *OptionsRepository_DeleteRace_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *OptionsRepository_DeleteRace_Call) RunAndReturn(run func(string) error) *OptionsRepository_DeleteRace_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
 // GetAllClass provides a mock function with no fields
 func (_m *OptionsRepository) GetAllClass() ([]*model.Class, error) {
 	ret := _m.Called()
@@ -362,6 +638,144 @@ func (_c *OptionsRepository_GetRaceByID_Call) Return(_a0 *model.Race, _a1 error)
 }
 
 func (_c *OptionsRepository_GetRaceByID_Call) RunAndReturn(run func(string) (*model.Race, error)) *OptionsRepository_GetRaceByID_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// UpdateClass provides a mock function with given fields: class
+func (_m *OptionsRepository) UpdateClass(class *model.Class) error {
+	ret := _m.Called(class)
+
+	if len(ret) == 0 {
+		panic("no return value specified for UpdateClass")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(*model.Class) error); ok {
+		r0 = rf(class)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// OptionsRepository_UpdateClass_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'UpdateClass'
+type OptionsRepository_UpdateClass_Call struct {
+	*mock.Call
+}
+
+// UpdateClass is a helper method to define mock.On call
+//   - class *model.Class
+func (_e *OptionsRepository_Expecter) UpdateClass(class interface{}) *OptionsRepository_UpdateClass_Call {
+	return &OptionsRepository_UpdateClass_Call{Call: _e.mock.On("UpdateClass", class)}
+}
+
+func (_c *OptionsRepository_UpdateClass_Call) Run(run func(class *model.Class)) *OptionsRepository_UpdateClass_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(*model.Class))
+	})
+	return _c
+}
+
+func (_c *OptionsRepository_UpdateClass_Call) Return(_a0 error) *OptionsRepository_UpdateClass_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *OptionsRepository_UpdateClass_Call) RunAndReturn(run func(*model.Class) error) *OptionsRepository_UpdateClass_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// UpdateDifficultyLevel provides a mock function with given fields: diffLevel
+func (_m *OptionsRepository) UpdateDifficultyLevel(diffLevel *model.DifficultyLevels) error {
+	ret := _m.Called(diffLevel)
+
+	if len(ret) == 0 {
+		panic("no return value specified for UpdateDifficultyLevel")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(*model.DifficultyLevels) error); ok {
+		r0 = rf(diffLevel)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// OptionsRepository_UpdateDifficultyLevel_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'UpdateDifficultyLevel'
+type OptionsRepository_UpdateDifficultyLevel_Call struct {
+	*mock.Call
+}
+
+// UpdateDifficultyLevel is a helper method to define mock.On call
+//   - diffLevel *model.DifficultyLevels
+func (_e *OptionsRepository_Expecter) UpdateDifficultyLevel(diffLevel interface{}) *OptionsRepository_UpdateDifficultyLevel_Call {
+	return &OptionsRepository_UpdateDifficultyLevel_Call{Call: _e.mock.On("UpdateDifficultyLevel", diffLevel)}
+}
+
+func (_c *OptionsRepository_UpdateDifficultyLevel_Call) Run(run func(diffLevel *model.DifficultyLevels)) *OptionsRepository_UpdateDifficultyLevel_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(*model.DifficultyLevels))
+	})
+	return _c
+}
+
+func (_c *OptionsRepository_UpdateDifficultyLevel_Call) Return(_a0 error) *OptionsRepository_UpdateDifficultyLevel_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *OptionsRepository_UpdateDifficultyLevel_Call) RunAndReturn(run func(*model.DifficultyLevels) error) *OptionsRepository_UpdateDifficultyLevel_Call {
+	_c.Call.Return(run)
+	return _c
+}
+
+// UpdateRace provides a mock function with given fields: race
+func (_m *OptionsRepository) UpdateRace(race *model.Race) error {
+	ret := _m.Called(race)
+
+	if len(ret) == 0 {
+		panic("no return value specified for UpdateRace")
+	}
+
+	var r0 error
+	if rf, ok := ret.Get(0).(func(*model.Race) error); ok {
+		r0 = rf(race)
+	} else {
+		r0 = ret.Error(0)
+	}
+
+	return r0
+}
+
+// OptionsRepository_UpdateRace_Call is a *mock.Call that shadows Run/Return methods with type explicit version for method 'UpdateRace'
+type OptionsRepository_UpdateRace_Call struct {
+	*mock.Call
+}
+
+// UpdateRace is a helper method to define mock.On call
+//   - race *model.Race
+func (_e *OptionsRepository_Expecter) UpdateRace(race interface{}) *OptionsRepository_UpdateRace_Call {
+	return &OptionsRepository_UpdateRace_Call{Call: _e.mock.On("UpdateRace", race)}
+}
+
+func (_c *OptionsRepository_UpdateRace_Call) Run(run func(race *model.Race)) *OptionsRepository_UpdateRace_Call {
+	_c.Call.Run(func(args mock.Arguments) {
+		run(args[0].(*model.Race))
+	})
+	return _c
+}
+
+func (_c *OptionsRepository_UpdateRace_Call) Return(_a0 error) *OptionsRepository_UpdateRace_Call {
+	_c.Call.Return(_a0)
+	return _c
+}
+
+func (_c *OptionsRepository_UpdateRace_Call) RunAndReturn(run func(*model.Race) error) *OptionsRepository_UpdateRace_Call {
 	_c.Call.Return(run)
 	return _c
 }

@@ -17,9 +17,9 @@ type Character struct {
 	Name        string
 	Description string
 	RaceID      string         `gorm:"index"`
-	Race        *Race          `gorm:"foreignKey:RaceID"`
+	Race        *Race          `gorm:"foreignKey:RaceID;constraint:OnDelete:SET NULL"`
 	ClassID     string         `gorm:"index"`
-	Class       *Class         `gorm:"foreignKey:ClassID"`
+	Class       *Class         `gorm:"foreignKey:ClassID;constraint:OnDelete:SET NULL"`
 	Images      pq.StringArray `gorm:"type:text[]"`
 	Private     bool
 	UserID      string

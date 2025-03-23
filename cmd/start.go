@@ -51,12 +51,14 @@ func start(cmd *cobra.Command, args []string) error {
 	jwtService := jwt.NewJwtToken(cfg.JwtConfig)
 	userService := service.NewUserService(userRepo, optionRepo, jwtService, logger, cfg)
 	publicService := service.NewPublicService(publicRepo)
+	adminService := service.NewAdminService(logger, optionRepo)
 
 	validate := validator.New()
 
 	// Register routes
 	routes.NewRouteUserHandler(f, userService, jwtService, validate, logger)
 	routes.NewRoutePublicHandler(f, publicService, logger, cfg)
+	routes.NewRouteAdminHandler(f, jwtService, validate, adminService, logger)
 
 	gracefulShutdown(f, logger)
 

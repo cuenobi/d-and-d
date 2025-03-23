@@ -23,6 +23,378 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/admin/class": {
+            "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Update a new Class",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Update a new Class",
+                "parameters": [
+                    {
+                        "description": "Update class details. If a field does not need to be updated, just insert an empty string, You can get your class_id from get class api",
+                        "name": "request",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.UpdateClassBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Create a new Class",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Create a new Class",
+                "parameters": [
+                    {
+                        "description": "Create class details",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.ClassBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/class/{class_id}": {
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Deletes a class by its ID",
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Delete a class",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "class ID",
+                        "name": "class_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/diff-lv": {
+            "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Update a new Difficulty Level",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Update a new Difficulty Level",
+                "parameters": [
+                    {
+                        "description": "Update Difficulty Levels. If a field does not need to be updated, just insert an empty string, You can get your difficulty_level_id from get difficulty_level api",
+                        "name": "request",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.UpdateDifficultyLevel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Create a new Difficulty Level",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Create a new Difficulty Level",
+                "parameters": [
+                    {
+                        "description": "Create difficultyLevel details",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.DifficultyLevel"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/diff-lv/{difficulty_level_id}": {
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Deletes a difficulty level by its ID",
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Delete a difficulty level",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "difficulty level ID",
+                        "name": "difficulty_level_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/race": {
+            "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Update a new Race",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Update a new Race",
+                "parameters": [
+                    {
+                        "description": "Update race details. If a field does not need to be updated, just insert an empty string, You can get your race_id from get race api",
+                        "name": "request",
+                        "in": "body",
+                        "schema": {
+                            "$ref": "#/definitions/dto.UpdateRaceBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Create a new Race",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Create a new Race",
+                "parameters": [
+                    {
+                        "description": "Create race details",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.RaceBody"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/admin/race/{race_id}": {
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Deletes a race by its ID",
+                "tags": [
+                    "Admin"
+                ],
+                "summary": "Delete a race",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "race ID",
+                        "name": "race_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/login": {
             "post": {
                 "description": "Authenticate user and return JWT token",
@@ -352,7 +724,7 @@ const docTemplate = `{
                         "BearerAuth": []
                     }
                 ],
-                "description": "Get all characters",
+                "description": "Get all characters, You can retrieve the ID for updating or deleting a character if needed.",
                 "consumes": [
                     "application/json"
                 ],
@@ -364,8 +736,76 @@ const docTemplate = `{
                 ],
                 "summary": "Get all characters",
                 "responses": {
-                    "201": {
-                        "description": "Created",
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/classes": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get all classes, You can retrieve the ID for create character updating or deleting a class if needed.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get all classes",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/diff-lv": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get difficulty level, You can retrieve the ID for create quest updating or deleting a difficulty level if needed.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get all difficulty level",
+                "responses": {
+                    "200": {
+                        "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/dto.HandlerResponse"
                         }
@@ -562,7 +1002,7 @@ const docTemplate = `{
                         "BearerAuth": []
                     }
                 ],
-                "description": "Get all quests",
+                "description": "Get all quests, You can retrieve the ID for updating or deleting a quest if needed.",
                 "consumes": [
                     "application/json"
                 ],
@@ -574,8 +1014,42 @@ const docTemplate = `{
                 ],
                 "summary": "Get all quests",
                 "responses": {
-                    "201": {
-                        "description": "Created",
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/dto.HandlerResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/user/races": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Get all races, You can retrieve the ID for create character updating or deleting a race if needed.",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get all races",
+                "responses": {
+                    "200": {
+                        "description": "OK",
                         "schema": {
                             "$ref": "#/definitions/dto.HandlerResponse"
                         }
@@ -591,7 +1065,7 @@ const docTemplate = `{
         },
         "/user/register": {
             "post": {
-                "description": "Create a new user account",
+                "description": "Create a new user account role (1: User, 2: Admin)",
                 "consumes": [
                     "application/json"
                 ],
@@ -631,6 +1105,38 @@ const docTemplate = `{
         }
     },
     "definitions": {
+        "dto.ClassBody": {
+            "type": "object",
+            "required": [
+                "description",
+                "name"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "maxLength": 5000
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.DifficultyLevel": {
+            "type": "object",
+            "required": [
+                "description",
+                "name"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "maxLength": 5000
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
         "dto.HandlerResponse": {
             "type": "object",
             "properties": {
@@ -644,10 +1150,80 @@ const docTemplate = `{
                 }
             }
         },
+        "dto.RaceBody": {
+            "type": "object",
+            "required": [
+                "description",
+                "name"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "maxLength": 5000
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
         "dto.RegisterResponse": {
             "type": "object",
             "properties": {
                 "message": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.UpdateClassBody": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "maxLength": 5000
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.UpdateDifficultyLevel": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "maxLength": 5000
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.UpdateRaceBody": {
+            "type": "object",
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "maxLength": 5000
+                },
+                "id": {
+                    "type": "string"
+                },
+                "name": {
                     "type": "string"
                 }
             }
